@@ -1,6 +1,6 @@
-‐ name: build
-  id: build
-  uses: docker/build-action@v1
-  with:
-    repository: github.com/amajidsinar/twtgen
-    tags: v1
+uses: docker/build-push-action@v1
+with:
+  username: ${{ secrets.amajidsinar }}
+  password: ${{ secrets.Dazzura020 }}
+  repository: https://hub.docker.com/repository/docker/amajidsinar/
+  tags: latest
