@@ -8,7 +8,7 @@ def test_read_wikidump():
     for (idx, (k, _)) in enumerate(wikidump.items()):
         assert titles[idx] == k
 
-def test_count_vocab():
+def test_count_vocab_1():
     text = """Namaku Boy. Aku adalah anak tunggal."""
     sw = stop_words.STOP_WORDS
     result = count_vocab(text, sw)
@@ -18,3 +18,10 @@ def test_count_vocab():
     assert result['anak']==1
     assert result['tunggal']==1
 
+
+def test_count_vocab_2():
+    text = """kijang satu, kijang dua, ganti !!!"""
+    sw = stop_words.STOP_WORDS
+    result = count_vocab(text, sw)
+    assert result['kijang']==2
+    assert result['ganti']==1
