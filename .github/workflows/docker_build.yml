@@ -1,0 +1,6 @@
+‐ name: build
+  id: build
+  uses: docker/build-action@v1
+  with:
+    repository: github.com/amajidsinar/twtgen
+    tags: v1
