@@ -10,27 +10,30 @@ def test_read_wikidump_medium():
 
 def test_read_wikidump_small_1():
     wikidump=read_wikidump(wikidump_path='tests/assets/wikidump/small_1')
-    assert wikidump['Boy']=='Namaku "Boy". Aku adalah anak tunggal'
-    assert wikidump['BIN']=="kijang satu, kijang dua, ganti !!!"
-    assert list(wikidump.keys()) == ['Boy', 'BIN']
+    assert wikidump['Peradaban']=="""Lagu Peradaban jauh lebih keras dari lagu metal apapun yang pernah kami dengar, geramnya sampai kebas."""
+    assert wikidump['pergijauh vs wordfangs']=="""Kalo lu denger rock terus bertahun-tahun lo akan bosen gitu. Sekarang anak-anak udah gak denger rock lagiGue masih denger sih"""
+    assert wikidump['No debat']=="""Peradaban adalah musik tersangar di bumi. no debat"""
+    assert list(wikidump.keys()) == ['Peradaban', 'pergijauh vs wordfangs', 'No debat']
 
 def test_read_wikidump_small_2():
     wikidump=read_wikidump(wikidump_path='tests/assets/wikidump/small_2')
-    assert wikidump['Peradaban']=="""Lagu Peradaban jauh lebih keras dari lagu metal apapun yang pernah kami dengar, geramnya sampai kebas."""
-    assert wikidump['pergijauh vs wordfangs']=="""Kalo lu denger rock terus bertahun-tahun lo akan bosen gitu. Sekarang anak-anak udah gak denger rock lagiGue masih denger sih"""
-    assert list(wikidump.keys()) == ['Peradaban', 'pergijauh vs wordfangs']
-
+    assert wikidump['Hafal peradaban']=="""hafal peradaban doesn't make him stay"""
+    assert wikidump['Peradaban III']=="""Peradaban vs everybody"""
+    assert wikidump['Peradaban IV']=="""Bayi ngomong peradaban jauh lebih keras dari lagu metal manapun"""
+    assert list(wikidump.keys()) == ['Hafal peradaban', 'Peradaban III', 'Peradaban IV']
 
 def test_join_wikidump_small():
     wikidump = {}
     wikidump_paths = ['tests/assets/wikidump/small_1', 'tests/assets/wikidump/small_2']
     for wikidum_path in wikidump_paths:
         wikidump.update(read_wikidump(wikidump_path=wikidum_path))
-    assert wikidump['Boy']=='Namaku "Boy". Aku adalah anak tunggal'
-    assert wikidump['BIN']=="kijang satu, kijang dua, ganti !!!"
     assert wikidump['Peradaban']=="""Lagu Peradaban jauh lebih keras dari lagu metal apapun yang pernah kami dengar, geramnya sampai kebas."""
     assert wikidump['pergijauh vs wordfangs']=="""Kalo lu denger rock terus bertahun-tahun lo akan bosen gitu. Sekarang anak-anak udah gak denger rock lagiGue masih denger sih"""
-
+    assert wikidump['No debat']=="""Peradaban adalah musik tersangar di bumi. no debat"""
+    assert wikidump['Hafal peradaban']=="""hafal peradaban doesn't make him stay"""
+    assert wikidump['Peradaban III']=="""Peradaban vs everybody"""
+    assert wikidump['Peradaban IV']=="""Bayi ngomong peradaban jauh lebih keras dari lagu metal manapun"""
+    assert list(wikidump.keys()) == ['Peradaban', 'pergijauh vs wordfangs', 'No debat', 'Hafal peradaban', 'Peradaban III', 'Peradaban IV']
 
 def test_count_vocab_1():
     text = """Namaku Boy. Aku adalah anak tunggal."""
