@@ -25,6 +25,7 @@ jobs:
     - name: build
       uses: docker/build-push-action@v1
       with:
-        repository: https://hub.docker.com/r/amajidsinar/twtgen
+        registry: https://hub.docker.com/
+        repository: amajidsinar/twtgen
         tag_with_ref: True
         
