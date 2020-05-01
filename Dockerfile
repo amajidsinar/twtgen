@@ -17,6 +17,8 @@ ENV LC_ALL="en_US.UTF-8"
 
 ENV LC_CTYPE="en_US.UTF-8"
 
+ENV LANG C.UTF-8
+
 RUN \
     cd twtgen &&\
     pip3 install -r requirements.txt &&\
