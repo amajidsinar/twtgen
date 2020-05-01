@@ -9,7 +9,9 @@ RUN apt update &&\
     apt install -y libsm6 libxext6 libxrender-dev git
 
 
-RUN git submodule add https://github.com/attardi/wikiextractor.git
+RUN \ 
+    git clone https://github.com/amajidsinar/twtgen &&\
+    git submodule add https://github.com/attardi/wikiextractor.git
 
 COPY . /App
 
