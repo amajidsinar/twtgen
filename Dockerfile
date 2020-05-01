@@ -13,11 +13,13 @@ RUN \
     git clone https://github.com/amajidsinar/twtgen &&\
     git clone https://github.com/attardi/wikiextractor.git
 
+ENV LC_ALL="en_US.UTF-8"
+
+ENV LC_CTYPE="en_US.UTF-8"
+
 RUN \
     cd twtgen &&\
     pip3 install -r requirements.txt &&\
-    export LC_ALL="en_US.UTF-8" &&\
-    export LC_CTYPE="en_US.UTF-8" &&\
     pytest tests/
     
     
