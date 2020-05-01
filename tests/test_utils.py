@@ -48,10 +48,8 @@ def test_read_wikidump_small_2():
 
 
 def test_join_wikidump_small():
-    wikidump = {}
     wikidump_paths = ["tests/assets/wikidump/small_1", "tests/assets/wikidump/small_2"]
-    for wikidum_path in wikidump_paths:
-        wikidump.update(read_wikidump(wikidump_path=wikidum_path))
+    wikidump = read_wikidump(wikidump_paths)
     assert (
         wikidump["Peradaban"]
         == """Lagu Peradaban jauh lebih keras dari lagu metal apapun yang pernah kami dengar, geramnya sampai kebas."""

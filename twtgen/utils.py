@@ -4,23 +4,26 @@ from spacy.lang.id import Indonesian
 import string
 from typing import Union, List
 
-def read_wikidump(wikidump_path: str):
+def read_wikidump(wikidump_path: Union[str, List[str]]):
+    if isinstance(wikidump_path, str):
+        wikidump_path = [wikidump_path]
     dicts = defaultdict(str)
-    with open(wikidump_path, 'r') as reader:
-        for line in reader:
-            if re.search("^<doc.id=", line):
-                title_start_idx = re.search(".title=", line).end() + 1
-                title = line[title_start_idx:-3]
-                print(f'Start processing {title}')
-            elif re.search("^</doc>", line):
-                continue
-            elif line.rstrip()==title:
-                print(f'End processing {title}')
-                continue
-            elif line=='\n':
-                continue
-            else:
-                dicts[title] += line.rstrip()
+    for _wikidump_path in wikidump_path:
+        with open(_wikidump_path, 'r') as reader:
+            for line in reader:
+                if re.search("^<doc.id=", line):
+                    title_start_idx = re.search(".title=", line).end() + 1
+                    title = line[title_start_idx:-3]
+                    print(f'Start processing {title}')
+                elif re.search("^</doc>", line):
+                    continue
+                elif line.rstrip()==title:
+                    print(f'End processing {title}')
+                    continue
+                elif line=='\n':
+                    continue
+                else:
+                    dicts[title] += line.rstrip()
     return dicts
 
 
