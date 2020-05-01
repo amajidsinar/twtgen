@@ -13,7 +13,7 @@ RUN git submodule add https://github.com/attardi/wikiextractor.git
 
 COPY . /App
 
-RUN /
+RUN \
     pip3 install -r requirements.txt &&\
     pytest tests/
     
