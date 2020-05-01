@@ -3,9 +3,9 @@ from collections import defaultdict
 from spacy.lang.id import Indonesian
 import string
 
-def read_wikidump(txt_file: str):
+def read_wikidump(wikidump_path: str):
     dicts = defaultdict(str)
-    with open(txt_file, 'r') as reader:
+    with open(wikidump_path, 'r') as reader:
         for line in reader:
             if re.search("^<doc.id=", line):
                 title_start_idx = re.search(".title=", line).end() + 1
@@ -23,7 +23,7 @@ def read_wikidump(txt_file: str):
     return dicts
 
 
-def count_vocab(text, stopwords):
+def count_vocab(text: str, stopwords: set):
     nlp = Indonesian()
     indonesian = nlp(text)
     vocab = defaultdict(int)
