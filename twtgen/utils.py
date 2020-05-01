@@ -2,6 +2,7 @@ import re
 from collections import defaultdict
 from spacy.lang.id import Indonesian
 import string
+from typing import Union, List
 
 def read_wikidump(wikidump_path: str):
     dicts = defaultdict(str)
@@ -23,12 +24,15 @@ def read_wikidump(wikidump_path: str):
     return dicts
 
 
-def count_vocab(text: str, stopwords: set):
+def count_vocab(text: Union[str, List[str]], stopwords: set):
     nlp = Indonesian()
-    indonesian = nlp(text)
+    if isinstance(text, str):
+        text = [text]
     vocab = defaultdict(int)
-    for token in indonesian:
-        token_lowercase = token.text.lower()
-        if  token_lowercase not in stopwords and re.search(token_lowercase, string.punctuation) is None:
-            vocab[token.text.lower()] += 1
+    for _text in text:
+        indonesian = nlp(_text)
+        for token in indonesian:
+            token_lowercase = token.text.lower()
+            if  token_lowercase not in stopwords and re.search(token_lowercase, string.punctuation) is None:
+                vocab[token.text.lower()] += 1
     return vocab

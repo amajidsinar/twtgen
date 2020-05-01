@@ -1,6 +1,7 @@
 import json
 from twtgen.utils import read_wikidump, count_vocab
 from spacy.lang.id import stop_words
+from collections import defaultdict
 
 
 def test_read_wikidump_medium():
@@ -84,14 +85,25 @@ def test_join_wikidump_small():
 
 
 def test_count_vocab_1():
-    text = """Namaku Boy. Aku adalah anak tunggal."""
+    text = """Namaku Boy. Aku adalah anak tunggal. Kijang adalah hewan kesukaanku"""
     sw = stop_words.STOP_WORDS
     result = count_vocab(text, sw)
-    assert list(result.keys()) == ["namaku", "boy", "anak", "tunggal"]
+    assert list(result.keys()) == [
+        "namaku",
+        "boy",
+        "anak",
+        "tunggal",
+        "kijang",
+        "hewan",
+        "kesukaanku",
+    ]
     assert result["namaku"] == 1
     assert result["boy"] == 1
     assert result["anak"] == 1
     assert result["tunggal"] == 1
+    assert result["kijang"] == 1
+    assert result["hewan"] == 1
+    assert result["kesukaanku"] == 1
 
 
 def test_count_vocab_2():
@@ -101,4 +113,29 @@ def test_count_vocab_2():
 
     assert list(result.keys()) == ["kijang", "ganti"]
     assert result["kijang"] == 2
+    assert result["ganti"] == 1
+
+
+def test_count_vocab_3():
+    text1 = """Namaku Boy. Aku adalah anak tunggal. Kijang adalah hewan kesukaanku."""
+    text2 = """kijang satu, kijang dua, ganti !!!"""
+    sw = stop_words.STOP_WORDS
+    result = count_vocab([text1, text2], sw)
+    assert list(result.keys()) == [
+        "namaku",
+        "boy",
+        "anak",
+        "tunggal",
+        "kijang",
+        "hewan",
+        "kesukaanku",
+        "ganti",
+    ]
+    assert result["namaku"] == 1
+    assert result["boy"] == 1
+    assert result["anak"] == 1
+    assert result["tunggal"] == 1
+    assert result["kijang"] == 3
+    assert result["hewan"] == 1
+    assert result["kesukaanku"] == 1
     assert result["ganti"] == 1
