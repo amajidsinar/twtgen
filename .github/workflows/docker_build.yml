@@ -1,4 +1,0 @@
-uses: docker/build-push-action@v1
-with:
-  repository: https://hub.docker.com/repository/docker/amajidsinar/
-  tags: latest
