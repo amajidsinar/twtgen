@@ -23,16 +23,19 @@ def test_count_vocab_1():
     text = """Namaku Boy. Aku adalah anak tunggal."""
     sw = stop_words.STOP_WORDS
     result = count_vocab(text, sw)
+    assert list(result.keys()) == ['namaku', 'boy', 'anak', 'tunggal']
     assert result['namaku']==1
     assert result['boy']==1
-    assert result['aku']==1
     assert result['anak']==1
     assert result['tunggal']==1
+    
 
 
 def test_count_vocab_2():
     text = """kijang satu, kijang dua, ganti !!!"""
     sw = stop_words.STOP_WORDS
     result = count_vocab(text, sw)
+    
+    assert list(result.keys()) == ['kijang', 'ganti']
     assert result['kijang']==2
     assert result['ganti']==1

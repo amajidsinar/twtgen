@@ -28,6 +28,7 @@ def count_vocab(text, stopwords):
     indonesian = nlp(text)
     vocab = defaultdict(int)
     for token in indonesian:
-        if token.text not in stopwords and token.text not in string.punctuation:
+        token_lowercase = token.text.lower()
+        if  token_lowercase not in stopwords and re.search(token_lowercase, string.punctuation) is None:
             vocab[token.text.lower()] += 1
     return vocab
