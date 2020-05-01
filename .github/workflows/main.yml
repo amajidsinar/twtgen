@@ -27,5 +27,5 @@ jobs:
       with:
         registry: https://hub.docker.com/r
         repository: amajidsinar/twtgen
-        tag_with_ref: True
+    
         
