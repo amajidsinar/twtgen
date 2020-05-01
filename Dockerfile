@@ -6,8 +6,18 @@ WORKDIR /App
 
 RUN apt update &&\
     apt install -y python3 python3-pip wget htop vim &&\
-    apt install -y libsm6 libxext6 libxrender-dev git ffmpeg
+    apt install -y libsm6 libxext6 libxrender-dev git
 
 
-RUN git submodule add https://github.com/attardi/wikiextractor.git
+RUN \ 
+    git clone https://github.com/amajidsinar/twtgen &&\
+    git clone https://github.com/attardi/wikiextractor.git
 
+ENV LANG C.UTF-8
+
+RUN \
+    cd twtgen &&\
+    pip3 install -r requirements.txt &&\
+    pytest tests/
+    
+    
