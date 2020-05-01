@@ -13,9 +13,8 @@ RUN \
     git clone https://github.com/amajidsinar/twtgen &&\
     git submodule add https://github.com/attardi/wikiextractor.git
 
-COPY . /App
-
 RUN \
+    cd twtgen &&\
     pip3 install -r requirements.txt &&\
     pytest tests/
     
