@@ -18,6 +18,6 @@ ENV LANG C.UTF-8
 RUN \
     cd twtgen &&\
     pip3 install -r requirements.txt &&\
-    pytest tests/
+    pytest tests/ -v
     
     
