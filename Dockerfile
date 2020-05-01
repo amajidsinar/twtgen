@@ -11,7 +11,7 @@ RUN apt update &&\
 
 RUN \ 
     git clone https://github.com/amajidsinar/twtgen &&\
-    git submodule add https://github.com/attardi/wikiextractor.git
+    git clone https://github.com/attardi/wikiextractor.git
 
 RUN \
     cd twtgen &&\
