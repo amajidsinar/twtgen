@@ -13,10 +13,6 @@ RUN \
     git clone https://github.com/amajidsinar/twtgen &&\
     git clone https://github.com/attardi/wikiextractor.git
 
-ENV LC_ALL="en_US.UTF-8"
-
-ENV LC_CTYPE="en_US.UTF-8"
-
 ENV LANG C.UTF-8
 
 RUN \
